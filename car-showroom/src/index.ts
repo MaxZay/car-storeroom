@@ -1,7 +1,10 @@
 import './styles.scss';
 import UserRepository from './data/repository/userRepository';
 import User from './data/entity/user';
+import App from './pages/app/app';
 
+const app = new App();
+app.render();
 // const users = [
 //   new User('0', 'maximzay2017@gmail.com', '0506', 'admin'),
 //   new User('1', 'maximzay2017@gmail.com', '0506', 'admin'),
