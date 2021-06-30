@@ -14,21 +14,45 @@ class App {
 
   private page: HTMLElement;
 
+  public static registerPage: HTMLElement | null;
+
+  public static loginPage: HTMLElement | null;
+
   constructor() {
-    Info.currentUser = new User('0', 'test@gmail.com', 'pass', 'admin');
     this.header = new Header().render();
     this.container = '';
     this.page = new Main().render();
   }
 
-  public render() {
-    const headerBlock = document.createElement('div');
+  static bindHeader() : void {
+    const register = document.getElementById('register');
+    const login = document.getElementById('login');
+    if (register) {
+      register.addEventListener('click', () => {
+        App.registerPage = new Register().render();
+        const reg = document.createElement('div');
+        reg.append(App.registerPage);
+        document.body.append(reg);
+        Register.bindButtons();
+      });
+    }
 
+    if (login) {
+      login.addEventListener('click', () => {
+        App.loginPage = new LoginPage().render();
+        const reg = document.createElement('div');
+        reg.append(App.loginPage);
+        document.body.append(reg);
+      });
+    }
+  }
+
+  public render() : void {
+    const headerBlock = document.createElement('div');
     headerBlock.append(this.header);
     document.body.append(headerBlock);
-    const mainBlock = document.createElement('div');
     document.body.append(this.page);
-  //  document.body.append(this.page);
+    App.bindHeader();
   }
 }
 

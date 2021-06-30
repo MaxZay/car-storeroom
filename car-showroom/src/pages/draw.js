@@ -40,13 +40,13 @@ export function registerDraw() {
     <h2 class="register_title">Регистрация</h2>
     <div class="register_info">
       <div class="register_block">
-        <input placeholder="Логин" class="register_input" id="name">
+        <input placeholder="Логин" class="register_input" id="login">
       </div>
       <div class="register_block">
-        <input placeholder="Почта" class="register_input" id="lastname">
+        <input placeholder="Почта" class="register_input" id="email">
       </div>
       <div class="register_block">
-        <input placeholder="Пароль" class="register_input" id="email">
+        <input placeholder="Пароль" class="register_input" id="pass">
       </div>
     </div>
     <div class="register_buttons">
@@ -66,8 +66,8 @@ export function headerDraw() {
   if (Info.currentUser) {
     return headerUserDraw();
   }
-  return `<button>Регистация</button>
-    <button>Логин</button>`;
+  return `<button id="register">Регистация</button>
+    <button id="login">Логин</button>`;
 }
 
 //#endregion
@@ -108,10 +108,12 @@ function drawCar(car) {
 function drawCars() {
   let container = '';
   for (let i = 0; i < Info.car.length; i++) {
-    if (Info.currentUser.role === 'user') {
-      container += drawUserCar(Info.car[i]);
-    } else if (Info.currentUser.role === 'admin') {
-      container += drawAdminCar(Info.car[i]);
+    if (Info.currentUser) {
+      if (Info.currentUser.role === 'user') {
+        container += drawUserCar(Info.car[i]);
+      } else if (Info.currentUser.role === 'admin') {
+        container += drawAdminCar(Info.car[i]);
+      }
     } else {
       container += drawCar(Info.car[i]);
     }

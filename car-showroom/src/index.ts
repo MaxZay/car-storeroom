@@ -27,6 +27,9 @@ cars.forEach((carItem) => {
   carTest.add(carItem);
 });
 
+const test = new UserRepository('showroomUser', 'User');
+test.add(users[0]);
+
 const app = new App();
 app.render();
 
