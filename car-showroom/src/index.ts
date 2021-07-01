@@ -7,7 +7,7 @@ import CarRepository from './data/repository/carRepository';
 import Info from './pages/info';
 
 const users = [
-  new User('0', 'maximzay2017@gmail.com', '0506', 'admin'),
+  new User('0', 'maximzay2017@gmail.com', '0506', 'max', 'admin'),
 ];
 
 const cars = [
@@ -39,5 +39,3 @@ app.render();
 // test.remove('1');
 // const a = test.retrieve();
 // console.log(a);
-
-// console.log('Hello world');

@@ -22,10 +22,10 @@ export function loginDraw() {
   <h2 class="register_title">Авторизация</h2>
   <div class="register_info">
     <div class="register_block">
-      <input placeholder="Логин" class="register_input" id="name">
+      <input placeholder="Логин" class="register_input" id="login_input">
     </div>
     <div class="register_block">
-      <input placeholder="Пароль" class="register_input" id="lastname">
+      <input placeholder="Пароль" class="register_input" id="pass">
     </div>
   </div>
   <div class="register_buttons">

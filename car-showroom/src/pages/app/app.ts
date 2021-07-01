@@ -24,7 +24,7 @@ class App {
     this.page = new Main().render();
   }
 
-  static bindHeader() : void {
+  bindHeader() : void {
     const register = document.getElementById('register');
     const login = document.getElementById('login');
     if (register) {
@@ -43,6 +43,12 @@ class App {
         const reg = document.createElement('div');
         reg.append(App.loginPage);
         document.body.append(reg);
+        LoginPage.bindButtons();
+        // document.body.remove();
+        // const headerBlock = document.createElement('div');
+        // headerBlock.append(this.header);
+        // document.body.append(headerBlock);
+        // document.body.append(this.page);
       });
     }
   }
@@ -52,7 +58,7 @@ class App {
     headerBlock.append(this.header);
     document.body.append(headerBlock);
     document.body.append(this.page);
-    App.bindHeader();
+    this.bindHeader();
   }
 }
 

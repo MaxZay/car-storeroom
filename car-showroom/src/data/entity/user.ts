@@ -7,11 +7,14 @@ class User {
 
   public role: string;
 
-  constructor(_id: string, _email: string, _password: string, _role: string) {
+  public login: string;
+
+  constructor(_id: string, _email: string, _password: string, _login: string, _role: string) {
     this.id = _id;
     this.email = _email;
     this.password = _password;
     this.role = _role;
+    this.login = _login;
   }
 }
 

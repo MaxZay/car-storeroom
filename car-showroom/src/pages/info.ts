@@ -2,7 +2,7 @@ import Car from "../data/entity/car";
 import User from "../data/entity/user";
 
 class Info {
-  public static user: User[] = [];
+  public static users: User[] = [];
 
   public static car: Car[] = [];
 
