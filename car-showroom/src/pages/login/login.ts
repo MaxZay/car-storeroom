@@ -2,6 +2,7 @@ import Car from "../../data/entity/car";
 import User from "../../data/entity/user";
 import CarRepository from "../../data/repository/carRepository";
 import UserRepository from "../../data/repository/userRepository";
+import App from "../app/app";
 import { headerDraw, loginDraw } from '../draw';
 import Info from "../info";
 
@@ -13,7 +14,7 @@ class LoginPage {
     this.container.innerHTML = loginDraw();
   }
 
-  static bindButtons() {
+  static bindButtons() : void {
     const form = document.querySelector('form');
     form?.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -35,17 +36,18 @@ class LoginPage {
         if (test[0]) {
           // eslint-disable-next-line prefer-destructuring
           Info.currentUser = test[0];
-          const header = document.querySelector('header');
-          if (header) {
-            header.innerHTML = headerDraw();
+          const main = document.querySelector('#main');
+          if (main) {
+            main.remove();
+            App.render();
           }
         }
       });
     });
     const cancel = document.querySelector('.register_cancel');
     cancel?.addEventListener('click', () => {
-      const form = document.querySelector('.form');
-      form?.remove();
+      const formTest = document.querySelector('.form');
+      formTest?.remove();
     });
   }
 

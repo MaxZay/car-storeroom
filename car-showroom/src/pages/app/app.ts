@@ -1,5 +1,5 @@
 import User from '../../data/entity/user';
-import { headerDraw } from '../draw';
+import { headerDraw, mainDraw } from '../draw';
 import Info from '../info';
 import LoginPage from '../login/login';
 import Main from '../main/main';
@@ -8,23 +8,20 @@ import Register from '../register/register';
 import Header from '../template/header/header';
 
 class App {
-  private container: string;
+  private static header: HTMLElement;
 
-  private header: HTMLElement;
-
-  private page: HTMLElement;
+  private static page: HTMLElement;
 
   public static registerPage: HTMLElement | null;
 
   public static loginPage: HTMLElement | null;
 
-  constructor() {
-    this.header = new Header().render();
-    this.container = '';
-    this.page = new Main().render();
-  }
+  // constructor() {
+  //   App.header = new Header().render();
+  //   App.page = new Main().render();
+  // }
 
-  bindHeader() : void {
+  static bindHeader() : void {
     const register = document.getElementById('register');
     const login = document.getElementById('login');
     if (register) {
@@ -42,7 +39,8 @@ class App {
         App.loginPage = new LoginPage().render();
         const reg = document.createElement('div');
         reg.append(App.loginPage);
-        document.body.append(reg);
+        const main = document.querySelector('#main');
+        main?.append(reg);
         LoginPage.bindButtons();
         // document.body.remove();
         // const headerBlock = document.createElement('div');
@@ -53,12 +51,18 @@ class App {
     }
   }
 
-  public render() : void {
+  public static render() : void {
+    Info.car = [];
+    const main = document.createElement('div');
+    main.id = 'main';
     const headerBlock = document.createElement('div');
+    this.page = new Main().render();
+    this.header = new Header().render();
     headerBlock.append(this.header);
-    document.body.append(headerBlock);
-    document.body.append(this.page);
-    this.bindHeader();
+    main.append(headerBlock);
+    main.append(this.page);
+    document.body.append(main);
+    App.bindHeader();
   }
 }
 

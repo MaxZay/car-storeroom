@@ -2,8 +2,8 @@ import Car from "../../data/entity/car";
 import CarRepository from "../../data/repository/carRepository";
 import { mainDraw } from '../draw';
 import Info from "../info";
-import LoginPage from "../login/login";
 import Register from "../register/register";
+import CarInfo from '../carInfo/info';
 
 class Main {
   public container: HTMLElement;
@@ -17,8 +17,23 @@ class Main {
       }
 
       this.container.innerHTML = mainDraw();
-      document.body.append(this.container);
+      this.bindDetailedButtons();
     });
+  }
+
+  bindDetailedButtons() : void {
+    const buttons = this.container.querySelectorAll('.detailed');
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', (e) => {
+        const a = buttons[i].parentElement?.id;
+        if (a) {
+          const main = document.querySelector('#main');
+          main?.remove();
+          document.body.append(new CarInfo(a).render());
+          CarInfo.bindBackButton();
+        }
+      });
+    }
   }
 
   public render() : HTMLElement {

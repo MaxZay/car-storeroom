@@ -31,7 +31,7 @@ const test = new UserRepository('showroomUser', 'User');
 test.add(users[0]);
 
 const app = new App();
-app.render();
+App.render();
 
 // const test = new UserRepository('showroom', 'User');
 // test.add(users[0]);

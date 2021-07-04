@@ -71,37 +71,36 @@ export function headerDraw() {
 }
 
 //#endregion
-function drawAdminCar(car) {
-  return `<div class="car">
+function drawAdminCar(car, id) {
+  return `<div class="car" id="${id}">
   <img src="${car.src}" width="200" height="150">
   <h3>${car.name}</h3>
   <h3>${car.price}$</h3>
   <div class="button-wrapper">
-    <button>Подробнее</button>
-    <button>Купить</button>
+    <button class="detailed">Подробнее</button>
     <button>Изменить</button>
   </div>
 </div>`;
 }
 
-function drawUserCar(car) {
-  return `<div class="car">
+function drawUserCar(car, id) {
+  return `<div class="car" id="${id}">
             <img src="${car.src}" width="200" height="150">
             <h3>${car.name}</h3>
             <h3>${car.price}$</h3>
             <div class="button-wrapper">
-              <button>Подробнее</button>
+              <button class="detailed">Подробнее</button>
               <button>Купить</button>
             </div>
           </div>`;
 }
 
-function drawCar(car) {
-  return `<div class="car">
+function drawCar(car, id) {
+  return `<div class="car" id="${id}">
             <img src="${car.src}" width="200" height="150">
             <h3>${car.name}</h3>
             <h3>${car.price}$</h3>
-            <button>Подробнее</button>
+            <button class="detailed">Подробнее</button>
           </div>`;
 }
 
@@ -110,12 +109,12 @@ function drawCars() {
   for (let i = 0; i < Info.car.length; i++) {
     if (Info.currentUser) {
       if (Info.currentUser.role === 'user') {
-        container += drawUserCar(Info.car[i]);
+        container += drawUserCar(Info.car[i], i);
       } else if (Info.currentUser.role === 'admin') {
-        container += drawAdminCar(Info.car[i]);
+        container += drawAdminCar(Info.car[i], i);
       }
     } else {
-      container += drawCar(Info.car[i]);
+      container += drawCar(Info.car[i], i);
     }
   }
   return container;
@@ -124,5 +123,12 @@ function drawCars() {
 export function mainDraw() {
   return `<div class="car-warpper">
             ${drawCars()}
+          </div>`;
+}
+
+export function carInfoDraw(car) {
+  return `<div>
+            <img src="${car.src}" width="200" height="150">
+            <button>Назад</button>
           </div>`;
 }
